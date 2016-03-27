@@ -1,0 +1,81 @@
+---
+layout: default
+title: git, repo advance skills
+---
+
+<h2>{{page.title}}</h2>
+
+<h3>git</h3>
+<p>
+	<ul>
+		<li>git checkout -b branchname startpoint : </li>
+		<p>make a branch named "branchname" based on the startpoint commit;以startpoint提交点为基点创建一个名为branchname的branch </p>
+		<li>git rev-parse HEAD(git symboli-ref HEAD) :</li>
+		<p>show the commit hash revision value(the commit symbolic value) of HEAD pointer；</p>
+		<li>git rebase --onto master server client : </li>
+		<p>check out the client branch, figure out the patches from the common ancestor of the client and server branches, and then replay them onto master; 找出从client分支和server分支的共同祖先之后到client分支的修改,在master分支上重演一遍; Normally, after this command is executed, HEAD would be detached. git symbolic-ref HEAD fails with fatal: ref HEAD is not a symbolic ref; git rev-parse HEAD yields a hash code (17a02998078923f2d62811326d130de991d1a923). To recover from this situation, try commands: git branch temp; git checkout temp; git branch -f master temp; git checkout master. 一般的, 在这条命令执行后, HEAD引用将会和master分离. git symbolic-ref HEAD会报错: HEAD引用不是一个标号引用. git rev-parse HEAD会报告一个hash code而不是一个符号. 如果要恢复的话, 可以尝试命令: git branch temp; git checkout temp; git branch -f master temp; git checkout master.</p>
+		<li>
+		git log --oneline --decorate --graph --all : 
+		</li>
+		<p>
+		show your project history in graph;以图形方式显示你项目的历史
+		</p>
+		<li>
+		git tag -a v1.2 9fceb02 : 
+		</li>
+		<p>
+		create a tag v1.2 connecting to 9fceb02 reference; 以引用9fce602为基础创名为v1.2的tag
+		</p>
+		<li>
+		git checkout -b [branchname] [tagname] : 
+		</li>
+		<p>
+		create a branch named "branchname" connecting to tag "tagname"; 以名为"tagname"的tag为基础创建branch(名为"branchName")
+		</p>
+		<li>
+		git ls-files --modified | xargs -i git checkout {} : 
+		</li>
+		<p>
+		restore modified files from repository; 将已经修改的文件恢从仓库出恢复.
+		</p>
+		<li>
+		tag show-ref --tags : 
+		<p>
+		how to show tags with their reference hash codes; 列出所有tag和它们的引用
+		</p>
+		</li>
+		<li>
+		git ls-remote --tags : 
+		</li>
+		<p>
+		show remote tags and their reference codes; 列出所有远端的tag和它们的引用
+		</p>
+	</ul>
+<p/>
+
+<h3>repo</h3>
+<p>
+	<ul>
+		<li>
+			switch to an android branch without downloading files from server again;can I change my current branches from gingerbread to ICS and possibly back;
+			fetch this branch based on the downloaded files:
+			怎样基于已经下载的git仓库切换Android版本
+		</li>
+		<p>
+			repo forall -c git fetch aosp --tags <br>
+			repo forall -c git checkout -b john5.1.1_r14_api22 android-5.1.1_r1
+		</p>
+	</ul>
+</p>
+
+<h3>useful links</h3>
+<p>
+	<ul>
+		<li>
+			<a href="https://source.android.com/source/build-numbers.html">AOSP codenames, Tags, and Build Numbers</a>
+		</li>
+		<p>
+		</p>
+	</ul>
+</p>
+<p>{{page.date | date_to_string}}</p>
